@@ -15,11 +15,7 @@ import cgi
 form = cgi.FieldStorage()
 
 # Get data from fields
-if form.getvalue('subject'):
-    subject = form.getvalue('subject')
-else:
-    subject = "Not set"
-
+subject = form.getvalue('subject') if form.getvalue('subject') else "Not set"
 print("Content-type:text/html\r\n\r\n")
 print("<html>")
 print("<head>")

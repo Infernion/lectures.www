@@ -23,10 +23,7 @@ def app(environ, start_response):
 
     # Session
     session = environ.get('paste.session.factory', lambda: {})()
-    if 'count' in session:
-        count = session['count']
-    else:
-        count = 1
+    count = session['count'] if 'count' in session else 1
     session['count'] = count + 1
 
     # Generate response

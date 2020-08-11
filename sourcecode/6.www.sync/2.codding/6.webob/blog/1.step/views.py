@@ -53,7 +53,7 @@ class BlogCreate(object):
     def response(self):
         from webob import Response
         if self.request.method == 'POST':
-            max_id = max([art['id'] for art in ARTICLES])
+            max_id = max(art['id'] for art in ARTICLES)
             ARTICLES.append(
                 {'id': max_id+1,
                  'title': self.request.POST['title'],

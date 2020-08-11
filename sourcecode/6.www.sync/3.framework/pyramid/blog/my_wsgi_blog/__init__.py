@@ -43,9 +43,7 @@ def make_wsgi_app():
     mapping['/static'] = static_app
 
     from paste.cascade import Cascade
-    app = Cascade([mapping, dispatch])
-
-    return app
+    return Cascade([mapping, dispatch])
 
 if __name__ == '__main__':
     from paste.httpserver import serve

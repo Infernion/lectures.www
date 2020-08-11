@@ -20,7 +20,7 @@ class URLDispatch(object):
     def __call__(self, environ, start_response):
         path_info = environ.get('PATH_INFO', '')
         for prefix, app in self.app_list:
-            if path_info == prefix or path_info == prefix+'/':
+            if path_info in [prefix, prefix + '/']:
                 return app(environ, start_response)
         start_response('404 Not Found',
                        [('content-type', 'text/plain')])
@@ -35,7 +35,7 @@ class RegexDispatch(object):
     def __call__(self, environ, start_response):
         path_info = environ.get('PATH_INFO', '')
         for prefix, app in self.app_list:
-            if path_info == prefix or path_info == prefix+'/':
+            if path_info in [prefix, prefix + '/']:
                 return app(environ, start_response)
             match = re.match(prefix, path_info) or\
                 re.match(prefix, path_info+'/')

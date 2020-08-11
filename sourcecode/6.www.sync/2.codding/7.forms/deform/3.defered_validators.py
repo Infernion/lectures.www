@@ -20,8 +20,7 @@ def get_csrf_token(session):
 def deferred_csrf_default(node, kw):
     request = kw.get('request')
     session = get_session(request)
-    csrf_token = get_csrf_token(session)
-    return csrf_token
+    return get_csrf_token(session)
 
 
 @colander.deferred

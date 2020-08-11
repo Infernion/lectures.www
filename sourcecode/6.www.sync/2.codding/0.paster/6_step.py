@@ -69,7 +69,7 @@ class BlogCreate(BaseBlog):
         if self.environ['REQUEST_METHOD'].upper() == 'POST':
             from urlparse import parse_qs
             values = parse_qs(self.environ['wsgi.input'].read())
-            max_id = max([art['id'] for art in ARTICLES])
+            max_id = max(art['id'] for art in ARTICLES)
             ARTICLES.append(
                 {'id': max_id+1,
                  'title': values['title'].pop(),
